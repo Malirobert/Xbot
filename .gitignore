@@ -1,0 +1,6 @@
+chrome_profile/
+*.log
+*.dll
+*.json
+*.pb
+*.dat
