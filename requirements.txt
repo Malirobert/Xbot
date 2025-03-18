@@ -1,3 +1,8 @@
+<<<<<<< HEAD
    selenium
    streamlit
+=======
+   selenium
+   streamlit
+>>>>>>> d5cd27d876b417259addb07f200cbe188f5c56a2
    pandas
