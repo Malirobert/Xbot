@@ -7,6 +7,7 @@ import threading
 from database import MessageDatabase
 import csv
 import os
+import asyncio
 
 # Configuration de la page
 st.set_page_config(
@@ -216,7 +217,7 @@ def add_to_history(username, status):
     except Exception as e:
         print(f"Error in add_to_history: {str(e)}")
 
-def run_bot():
+async def run_bot():
     try:
         # Utiliser les variables du bot_config
         local_username = bot_config['username']
@@ -239,7 +240,7 @@ def run_bot():
                 break
                 
             while bot_config['is_paused']:
-                time.sleep(1)
+                await asyncio.sleep(1)
                 if not bot_config['is_running']:
                     break
             
@@ -258,7 +259,7 @@ def run_bot():
                 else:
                     print(f"Failed to send message to {target_username}")
                 
-                time.sleep(local_delay * 60)
+                await asyncio.sleep(local_delay * 60)
                 
             except Exception as e:
                 error_msg = f"Error sending message to {target_username}: {str(e)}"
@@ -295,4 +296,7 @@ def validate_inputs():
     return True, ""
 
 # Ajoutez au début du fichier, après les imports
-bot_config = {} 
+bot_config = {}
+
+# Utiliser asyncio pour démarrer le bot
+asyncio.run(run_bot()) 
